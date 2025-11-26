@@ -1,0 +1,73 @@
+import React from "react";
+{/* right column: hero image */}
+<div className="flex justify-center lg:justify-end">
+{/* Use public image placed at /public/reze-chan-hero.png */}
+<div className="w-full max-w-md lg:max-w-lg">
+<div className="relative rounded-xl overflow-hidden shadow-2xl">
+<img src="/reze-chan-hero.png" alt="Reze-Chan" className="w-full h-auto object-cover" />
+{/* subtle overlay to blend with page */}
+<div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
+</div>
+</div>
+</div>
+</section>
+
+
+{/* Features */}
+<section id="features" className="mt-20 bg-white/5 rounded-xl p-8">
+<h3 className="text-2xl font-bold mb-6">Built for privacy, minted for culture</h3>
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+<FeatureCard title="ZK Missions" desc="Proof-based missions driven by lightweight ZK (circom + snarkjs)." />
+<FeatureCard title="Stealth Addresses" desc="Private incoming transfers and one-time addresses for rewards." />
+<FeatureCard title="Encrypted Drops" desc="XMTP & Lit integration for private meme drops and gated content." />
+</div>
+</section>
+
+
+{/* Community */}
+<section id="community" className="mt-12">
+<div className="flex items-center justify-between">
+<h3 className="text-2xl font-bold">The Anon Legion</h3>
+<div className="text-sm text-white/70">Join Discord • Follow on X</div>
+</div>
+
+
+<div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+<CommunityCard title="Private Quests" desc="Hidden missions that reward the curious." />
+<CommunityCard title="Meme Labs" desc="Collaborative fan art and cryptic drops." />
+<CommunityCard title="Vaults" desc="Private staking & secret reveals." />
+</div>
+</section>
+
+
+<footer className="mt-16 py-8 border-t border-white/10 text-sm text-white/70 flex justify-between">
+<div>© {new Date().getFullYear()} Reze-Chan • Built with x402 Narrative</div>
+<div>Terms • Privacy</div>
+</footer>
+</main>
+</div>
+);
+}
+
+
+function FeatureCard({ title, desc }){
+return (
+<div className="p-6 bg-white/3 rounded-lg">
+<div className="text-lg font-semibold">{title}</div>
+<div className="mt-2 text-sm text-white/80">{desc}</div>
+</div>
+)
+}
+
+
+function CommunityCard({ title, desc }){
+return (
+<div className="p-5 border border-white/5 rounded-lg bg-gradient-to-br from-white/3 to-transparent">
+<div className="font-semibold">{title}</div>
+<div className="mt-2 text-sm text-white/80">{desc}</div>
+<div className="mt-4">
+<a className="text-xs underline" href="#">Join</a>
+</div>
+</div>
+)
+}
