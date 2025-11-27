@@ -1,27 +1,42 @@
 export default function Home() {
   return (
     <main className="bg-black text-white min-h-screen">
-      {/* HERO SECTION */}
-      <section className="px-6 py-24 text-center bg-gradient-to-b from-blue-900/40 to-black">
-        <h1 className="text-6xl font-extrabold mb-6">Reze-Chan</h1>
 
-        <p className="text-xl max-w-2xl mx-auto opacity-80 mb-8">
-          The Privacy Native Meme Revolution Powered by x402 Protocol.
-        </p>
+      {/* HERO WITH IMAGE */}
+      <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
 
-        <p className="text-lg max-w-xl mx-auto opacity-60 mb-10">
-          Where memes meet encrypted rails. Built for degens who value freedom,
-          chaos, and privacy. Your culture — protected.
-        </p>
+        {/* BACKGROUND IMAGE */}
+        <img
+          src="/reze-hero.png"
+          alt="Reze-Chan Hero"
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        />
 
-        <a
-          href="https://x.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold"
-        >
-          Join Community
-        </a>
+        {/* GRADIENT OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+
+        {/* HERO CONTENT */}
+        <div className="relative z-10 text-center px-6 max-w-3xl">
+          <h1 className="text-6xl font-extrabold mb-6">Reze-Chan</h1>
+
+          <p className="text-xl opacity-80 mb-6">
+            The Privacy Native Meme Revolution Powered by x402 Protocol.
+          </p>
+
+          <p className="opacity-70 max-w-xl mx-auto mb-10">
+            A new wave of privacy-native meme culture — encrypted, unstoppable,
+            built directly on the rails of x402 technology.
+          </p>
+
+          <a
+            href="https://x.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-blue-500/30"
+          >
+            Join Community
+          </a>
+        </div>
       </section>
 
       {/* ABOUT x402 PROTOCOL */}
