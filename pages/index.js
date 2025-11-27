@@ -43,15 +43,7 @@ export default function Home() {
            href="https://zora.co/rezechanx402"
            target="_blank"
            rel="noopener noreferrer"
-          style={{
-          padding: "12px 24px",
-          background: "#fff",
-          color: "#000",
-         borderRadius: "8px",
-         fontWeight: "600",
-         textDecoration: "none",
-         border: "1px solid #ffffff40",
-         transition: "0.2s",
+          className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-blue-500/30"
   }}
 >
          Mint on Zora
