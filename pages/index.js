@@ -31,7 +31,7 @@ export default function Home() {
           </p>
 
           <a
-            href="https://x.com"
+            href="https://x.com/RezeChan_base"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-blue-500/30"
@@ -40,7 +40,7 @@ export default function Home() {
           </a>
               
             <a
-           href="https://zora.co/rezechanx402
+           href="https://zora.co/rezechanx402"
            target="_blank"
            rel="noopener noreferrer"
           style={{
