@@ -1,7 +1,8 @@
-export default function Footer(){
+xport default function Footer(){
 return (
-<footer className="w-full py-12 text-center opacity-70">
+<footer className="py-12 text-center text-white/70 border-t border-white/6 mt-20">
 © {new Date().getFullYear()} Reze-Chan — The Privacy Native Meme Revolution
 </footer>
 )
 }
+```
