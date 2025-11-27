@@ -4,3 +4,4 @@ tailwindcss: {},
 autoprefixer: {},
 },
 };
+```
