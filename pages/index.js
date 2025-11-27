@@ -33,7 +33,8 @@ export default function Home() {
             A new wave of privacy-native meme culture — encrypted, unstoppable,
             built directly on the rails of x402 technology.
           </p>
-
+          
+         <div className="flex flex-col items-center gap-4"> 
           <a
             href="https://x.com/RezeChan_base"
             target="_blank"
