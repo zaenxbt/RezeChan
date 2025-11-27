@@ -4,18 +4,13 @@ export default function Home() {
 
       {/* === CA TOP RIGHT === */}
       <div className="ca-box">
-        CA: 0xYOURCONTRACTADDRESS
+        CA: 0xa1dc9aaeb9a3e2202053099e55984054b6cb15d0
       </div>
 
       {/* === HERO SECTION === */}
       <div style={{ maxWidth: "720px", margin: "80px auto 0", textAlign: "center" }}>
         ...
       </div>
-
-    </main>
-  );
-}
-
 
       {/* HERO WITH IMAGE */}
       <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
