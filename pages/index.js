@@ -1,16 +1,6 @@
 export default function Home() {
   return (
-    <main style={{ padding: "32px" }}>
-
-      {/* === CA TOP RIGHT === */}
-      <div className="ca-box">
-        CA: 0xa1dc9aaeb9a3e2202053099e55984054b6cb15d0
-      </div>
-
-      {/* === HERO SECTION === */}
-      <div style={{ maxWidth: "720px", margin: "80px auto 0", textAlign: "center" }}>
-        ...
-      </div>
+    <main className="bg-black text-white min-h-screen">
 
       {/* HERO WITH IMAGE */}
       <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
@@ -22,7 +12,7 @@ export default function Home() {
           width={600}
           height={600}
           className="w-full max-w-[380px] object-contain"
-/>
+        />
 
         {/* GRADIENT OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
@@ -41,23 +31,23 @@ export default function Home() {
           </p>
 
           <a
-            href="https://x.com/RezeChan_base"
+            href="https://x.com"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-blue-500/30"
           >
             Join Community
           </a>
-              
-            <a
-           href="https://zora.co/rezechanx402"
-           target="_blank"
-           rel="noopener noreferrer"
-          className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-blue-500/30"
-         >
-         
-          Mint on Zora
-          </a>
+
+          <a
+         href="https://zora.co/collect/base:YOUR_CONTRACT_HERE"
+         target="_blank"
+         rel="noopener noreferrer"
+         className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-blue-500/30"
+       > 
+  Mint on Zora
+</a>
+          
         </div>
       </section>
 
