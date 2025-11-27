@@ -13,4 +13,4 @@ rezeDark: '#06132a'
 },
 plugins: [],
 }
-```
+
