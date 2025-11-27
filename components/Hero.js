@@ -1,47 +1,33 @@
 import Image from 'next/image'
+
+
 export default function Hero(){
 return (
-<section className="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-10 items-center">
-<div>
-<motion.h1 initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:0.6}} className="text-5xl font-extrabold leading-tight">Reze-Chan
-<span className="text-rezeMint"> — Privacy Native Meme Revolution</span>
-</motion.h1>
-<p className="mt-6 text-lg opacity-80 max-w-lg">Born from the x402 Protocol. Reze-Chan brings private, ZK-powered memetics back to the wild. No KYC. No gatekeepers. Pure anonymous culture.</p>
+<section className="min-h-[72vh] flex items-center">
+<div className="max-w-7xl mx-auto w-full px-8 grid lg:grid-cols-2 items-center gap-8">
+<div className="text-left">
+<h1 className="text-6xl font-extrabold text-white leading-tight">Reze-Chan</h1>
+<h2 className="text-2xl text-white/90 mt-4">The Privacy Native Meme Revolution Powered by x402 Protocol</h2>
 
 
-<div className="mt-8 flex gap-4">
-<a href="#" className="bg-white text-black px-6 py-3 rounded-full font-semibold shadow">Get Started</a>
-<a href="#community" className="border border-white/30 px-6 py-3 rounded-full">Join Community</a>
-</div>
+<p className="mt-6 text-lg text-white/80 max-w-xl">At Reze-chan, we're pioneering Privacy Native Memes. We ensure your memes remain a mystery until you choose to unveil their secrets. Join us in preserving the rare, irreversible nature of online content.</p>
 
 
-<div className="mt-8 flex gap-6 text-sm opacity-80">
-<div className="flex items-center gap-3">
-<div className="w-10 h-10 rounded-md bg-white/5 flex items-center justify-center">🔥</div>
-<div>
-<div className="font-semibold">Stealth Drops</div>
-<div className="text-xs">Encrypted airdrops & ZK missions</div>
+<div className="mt-8 flex items-center gap-4">
+<a className="bg-white text-blue-700 px-6 py-3 rounded-md font-semibold" href="#">Get Started</a>
+<a className="border border-white/40 px-6 py-3 rounded-md hover:bg-white/10" href="#community">Explore Community</a>
 </div>
 </div>
 
 
-<div className="flex items-center gap-3">
-<div className="w-10 h-10 rounded-md bg-white/5 flex items-center justify-center">🔒</div>
-<div>
-<div className="font-semibold">Privacy-first</div>
-<div className="text-xs">x402 native primitives</div>
+<div className="flex justify-end">
+{/* Place the provided image in /public/reze-chan-hero.png */}
+<div className="w-full max-w-lg">
+<Image src="/reze-chan-hero.png" alt="Reze-Chan" width={900} height={900} className="object-contain" priority/>
 </div>
-</div>
-</div>
-</div>
-
-
-<div className="flex justify-center lg:justify-end">
-<div className="relative w-full max-w-md rounded-2xl shadow-2xl overflow-hidden">
-<Image src={heroImg} alt="Reze-Chan" priority />
-<div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
 </div>
 </div>
 </section>
 )
 }
+```
