@@ -1,30 +1,132 @@
 export default function Home() {
   return (
-    <main style={{ padding: '40px', fontFamily: 'sans-serif' }}>
-      <h1>Reze-Chan</h1>
-      <p>The Privacy Native Meme Revolution Powered by x402 Protocol.</p>
+    <main className="bg-black text-white min-h-screen">
+      {/* HERO SECTION */}
+      <section className="px-6 py-24 text-center bg-gradient-to-b from-blue-900/40 to-black">
+        <h1 className="text-6xl font-extrabold mb-6">Reze-Chan</h1>
 
-      <p>
-        Welcome to Reze-Chan. Your memes stay private until you choose to reveal
-        them. Powered by privacy-first tech.
-      </p>
+        <p className="text-xl max-w-2xl mx-auto opacity-80 mb-8">
+          The Privacy Native Meme Revolution Powered by x402 Protocol.
+        </p>
 
-      <a
-        href="https://x.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          marginTop: '20px',
-          display: 'inline-block',
-          padding: '10px 20px',
-          background: '#2563eb',
-          color: 'white',
-          borderRadius: '8px',
-          textDecoration: 'none'
-        }}
-      >
-        Join Community
-      </a>
+        <p className="text-lg max-w-xl mx-auto opacity-60 mb-10">
+          Where memes meet encrypted rails. Built for degens who value freedom,
+          chaos, and privacy. Your culture — protected.
+        </p>
+
+        <a
+          href="https://x.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold"
+        >
+          Join Community
+        </a>
+      </section>
+
+      {/* ABOUT x402 PROTOCOL */}
+      <section className="px-6 py-20 border-t border-white/10">
+        <h2 className="text-4xl font-bold text-center mb-10">Powered by x402</h2>
+
+        <div className="max-w-3xl mx-auto text-center opacity-70 text-lg leading-relaxed">
+          <p>
+            x402 is the next generation privacy execution layer enabling 
+            encrypted transactions, encrypted mempools, and zero-knowledge interaction primitives.
+          </p>
+          <p className="mt-4">
+            Reze-Chan uses this to build the first meme ecosystem born directly
+            from privacy-native rails — instead of adding privacy later.
+          </p>
+        </div>
+      </section>
+
+      {/* WHY PRIVACY MATTERS */}
+      <section className="px-6 py-24 bg-gray-900/40 border-y border-white/10">
+        <h2 className="text-4xl font-bold text-center mb-14">Why Privacy Matters</h2>
+
+        <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto text-center">
+          <div className="p-6 bg-white/5 rounded-xl">
+            <h3 className="text-xl font-semibold mb-3">No Surveillance</h3>
+            <p className="opacity-70">
+              Your meme moves stay hidden. No frontrunners, no chain stalkers.
+            </p>
+          </div>
+
+          <div className="p-6 bg-white/5 rounded-xl">
+            <h3 className="text-xl font-semibold mb-3">ZK-Powered Freedom</h3>
+            <p className="opacity-70">
+              Zero-knowledge rails let you interact without revealing identity.
+            </p>
+          </div>
+
+          <div className="p-6 bg-white/5 rounded-xl">
+            <h3 className="text-xl font-semibold mb-3">Degen-First</h3>
+            <p className="opacity-70">
+              Privacy isn't optional for meme culture — it's the foundation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* TOKENOMICS */}
+      <section className="px-6 py-24">
+        <h2 className="text-4xl font-bold text-center mb-14">Tokenomics</h2>
+
+        <div className="max-w-xl mx-auto space-y-6 text-lg">
+          <div className="bg-white/5 p-6 rounded-xl flex justify-between">
+            <span>Total Supply</span>
+            <span className="font-semibold">100%</span>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl flex justify-between">
+            <span>Locked (5 Years)</span>
+            <span className="font-semibold">50%</span>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl flex justify-between">
+            <span>Liquidity + Ecosystem</span>
+            <span className="font-semibold">25%</span>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl flex justify-between">
+            <span>Community + Rewards</span>
+            <span className="font-semibold">25%</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ROADMAP */}
+      <section className="px-6 py-24 bg-gray-900/40 border-y border-white/10">
+        <h2 className="text-4xl font-bold text-center mb-14">Roadmap</h2>
+
+        <div className="max-w-2xl mx-auto space-y-10 text-lg">
+          <div className="bg-white/5 p-6 rounded-xl">
+            <h3 className="font-semibold text-xl mb-2">Phase 1 — Birth of Reze-Chan</h3>
+            <p className="opacity-70">
+              Launch on Base, deployments, DEX listing, initial community expansion.
+            </p>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl">
+            <h3 className="font-semibold text-xl mb-2">Phase 2 — x402 Integrations</h3>
+            <p className="opacity-70">
+              Encrypted meme interactions, private swaps, zk-powered utilities.
+            </p>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl">
+            <h3 className="font-semibold text-xl mb-2">Phase 3 — Meme Privacy Ecosystem</h3>
+            <p className="opacity-70">
+              Full privacy-native meme hub, creator tools, encrypted feed, and more.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="px-6 py-10 text-center opacity-60 text-sm">
+        Reze-Chan © {new Date().getFullYear()} — Powered by x402 Protocol
+      </footer>
     </main>
-  )
+  );
 }
