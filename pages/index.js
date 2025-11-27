@@ -38,8 +38,9 @@ export default function Home() {
           >
             Join Community
           </a>
+              
             <a
-           href="https://zora.co/collect/base:YOUR_CONTRACT_HERE"
+           href="https://zora.co/rezechanx402
            target="_blank"
            rel="noopener noreferrer"
           style={{
