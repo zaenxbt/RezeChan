@@ -44,8 +44,7 @@ export default function Home() {
            target="_blank"
            rel="noopener noreferrer"
           className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-blue-500/30"
-  }}
->
+         >
          Mint on Zora
           </a>
         </div>
