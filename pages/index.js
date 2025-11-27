@@ -1,6 +1,21 @@
 export default function Home() {
   return (
-    <main className="bg-black text-white min-h-screen">
+    <main style={{ padding: "32px" }}>
+
+      {/* === CA TOP RIGHT === */}
+      <div className="ca-box">
+        CA: 0xYOURCONTRACTADDRESS
+      </div>
+
+      {/* === HERO SECTION === */}
+      <div style={{ maxWidth: "720px", margin: "80px auto 0", textAlign: "center" }}>
+        ...
+      </div>
+
+    </main>
+  );
+}
+
 
       {/* HERO WITH IMAGE */}
       <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
