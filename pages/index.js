@@ -6,11 +6,14 @@ export default function Home() {
       <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
 
         {/* BACKGROUND IMAGE */}
-        <img
-          src="/reze-hero.png"
-          alt="Reze-Chan Hero"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
+        <Image
+  src="/hero.png"
+  alt="Hero"
+  width={600}
+  height={600}
+  className="object-contain w-full max-w-[350px] mx-auto"
+/>
+
 
         {/* GRADIENT OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
