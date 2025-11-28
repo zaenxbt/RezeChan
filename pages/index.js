@@ -31,7 +31,6 @@ export default function Home() {
           </p>
           
          <div className="flex flex-col items-center gap-4"> 
-          
           <a
             href="https://x.com/RezeChan_base"
             target="_blank"
