@@ -30,7 +30,8 @@ export default function Home() {
             built directly on the rails of x402 technology.
           </p>
           
-         <div className="flex flex-col items-center gap-4"> 
+         <div className="flex flex-col items-center gap-4">
+          </p>
           <a
             href="https://x.com/RezeChan_base"
             target="_blank"
