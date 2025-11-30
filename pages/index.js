@@ -23,17 +23,54 @@ export default function Home() {
   }
 
   async function fetchNFTs() {
-    try {
-      const res = await fetch(
-        `https://api.zora.co/discovery/feed?address=0x4d9b44633fe12a25dcfdbfe4558805ff89a4da0b`
-      );
-      const data = await res.json();
-      setNfts(data?.feed || []);
-    } catch (err) {
-      console.error("NFT Gallery Error:", err);
-    }
-    setLoadingNfts(false);
+  try {
+    const query = `
+      query WalletActivity($address: String!) {
+        wallet(address: $address) {
+          activities(limit: 50) {
+            title
+            description
+            imageURL
+            permalink
+            token {
+              imageURL
+              name
+            }
+          }
+        }
+      }
+    `;
+
+    const res = await fetch("https://api.zora.co/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-KEY": "zora-public"
+      },
+      body: JSON.stringify({
+        query,
+        variables: { address: "0x4d9b44633fe12a25dcfdbfe4558805ff89a4da0b" }
+      })
+    });
+
+    const json = await res.json();
+    const items = json?.data?.wallet?.activities || [];
+
+    setNfts(
+      items.map((i) => ({
+        image: i.imageURL || i?.token?.imageURL,
+        title: i.title || i?.token?.name,
+        permalink: i.permalink
+      }))
+    );
+
+  } catch (err) {
+    console.error("NFT Gallery GraphQL Error:", err);
   }
+
+  setLoadingNfts(false);
+}
+
 
   useEffect(() => {
     fetchMints();
