@@ -68,6 +68,7 @@ export default function Home() {
           {/* BUTTON GROUP WITH GAP */}
           <div className="flex flex-col items-center gap-4">
 
+            {/* Join Community */}
             <a
               href="https://x.com/RezeChan_base"
               target="_blank"
@@ -77,6 +78,7 @@ export default function Home() {
               Join Community
             </a>
 
+            {/* Mint on Zora */}
             <a
               href="https://zora.co/rezechanx402"
               target="_blank"
@@ -84,6 +86,14 @@ export default function Home() {
               className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-blue-500/30"
             >
               Mint on Zora
+            </a>
+
+            {/* NEW BUTTON → Go to Web V2 */}
+            <a
+              href="/v2"
+              className="px-8 py-4 bg-purple-600 hover:bg-purple-700 transition rounded-xl text-lg font-semibold shadow-lg shadow-purple-500/30"
+            >
+              Explore More
             </a>
 
           </div>
