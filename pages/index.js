@@ -1,62 +1,50 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-
   const [mints, setMints] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [nfts, setNfts] = useState([]);
+  const [loadingNfts, setLoadingNfts] = useState(true);
 
   async function fetchMints() {
     try {
       const res = await fetch(
         `https://api.zora.co/discovery/mints?contractAddress=0xa1dc9aaeb9a3e2202053099e55984054b6cb15d0`
       );
-
       const data = await res.json();
       setMints(data?.mints || []);
     } catch (err) {
       console.error("Mint Tracker Error:", err);
     }
-
     setLoading(false);
+  }
+
+  async function fetchNFTs() {
+    try {
+      const res = await fetch(
+        `https://api.zora.co/discovery/feed?address=0x4d9b44633fe12a25dcfdbfe4558805ff89a4da0b`
+      );
+      const data = await res.json();
+      setNfts(data?.feed || []);
+    } catch (err) {
+      console.error("NFT Gallery Error:", err);
+    }
+    setLoadingNfts(false);
   }
 
   useEffect(() => {
     fetchMints();
+    fetchNFTs();
 
-    // Auto-refresh every 15 sec
     const interval = setInterval(fetchMints, 15000);
-    return () => clearInterval(interval);
+    const intervalNFTs = setInterval(fetchNFTs, 30000);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(intervalNFTs);
+    };
   }, []);
-// NFT GALLERY STATES
-const [nfts, setNfts] = useState([]);
-const [loadingNFTs, setLoadingNFTs] = useState(true);
-
-async function fetchNFTs() {
-  try {
-    const res = await fetch(
-      "https://api.zora.co/discovery/tokens?address=0xa1dc9aaeb9a3e2202053099e55984054b6cb15d0"
-    );
-
-    const data = await res.json();
-    const tokens = data?.tokens || [];
-
-    const parsed = tokens.map((t) => ({
-      name: t.token?.tokenName,
-      image: t.token?.image?.url || t.token?.content?.media?.uri,
-      tokenId: t.token?.tokenId,
-    }));
-
-    setNfts(parsed);
-  } catch (err) {
-    console.error("NFT Gallery Error:", err);
-  }
-
-  setLoadingNFTs(false);
-}
-
-useEffect(() => {
-  fetchNFTs();
-}, []);
 
   return (
     <main className="bg-black text-white min-h-screen">
@@ -66,10 +54,8 @@ useEffect(() => {
         CA: 0xa1dc9aaeb9a3e2202053099e55984054b6cb15d0
       </div>
 
-      {/* HERO WITH IMAGE */}
+      {/* HERO */}
       <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
-
-        {/* BACKGROUND IMAGE */}
         <img
           src="/reze-hero.png"
           alt="Reze-Chan Hero"
@@ -78,12 +64,9 @@ useEffect(() => {
           className="w-full max-w-[380px] object-contain"
         />
 
-        {/* GRADIENT OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
 
-        {/* HERO CONTENT */}
         <div className="relative z-10 text-center px-6 max-w-3xl">
-
           <h1 className="text-6xl font-extrabold mb-6">Reze-Chan</h1>
 
           <p className="text-xl opacity-80 mb-6">
@@ -95,9 +78,7 @@ useEffect(() => {
             built directly on the rails of x402 technology.
           </p>
 
-          {/* BUTTON GROUP WITH GAP */}
           <div className="flex flex-col items-center gap-4">
-
             <a
               href="https://x.com/RezeChan_base"
               target="_blank"
@@ -115,12 +96,11 @@ useEffect(() => {
             >
               Mint on Zora
             </a>
-
           </div>
         </div>
       </section>
 
-      {/* ABOUT x402 PROTOCOL */}
+      {/* ABOUT x402 */}
       <section className="px-6 py-20 border-t border-white/10">
         <h2 className="text-4xl font-bold text-center mb-10">Powered by x402</h2>
 
@@ -143,17 +123,17 @@ useEffect(() => {
         <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto text-center">
           <div className="p-6 bg-white/5 rounded-xl">
             <h3 className="text-xl font-semibold mb-3">No Surveillance</h3>
-            <p className="opacity-70">Your meme moves stay hidden. No frontrunners, no chain stalkers.</p>
+            <p className="opacity-70">Your meme moves stay hidden.</p>
           </div>
 
           <div className="p-6 bg-white/5 rounded-xl">
             <h3 className="text-xl font-semibold mb-3">ZK-Powered Freedom</h3>
-            <p className="opacity-70">Zero-knowledge rails let you interact without revealing identity.</p>
+            <p className="opacity-70">Zero-knowledge rails without revealing identity.</p>
           </div>
 
           <div className="p-6 bg-white/5 rounded-xl">
             <h3 className="text-xl font-semibold mb-3">Degen-First</h3>
-            <p className="opacity-70">Privacy isn't optional for meme culture — it's the foundation.</p>
+            <p className="opacity-70">Privacy is the foundation.</p>
           </div>
         </div>
       </section>
@@ -163,10 +143,21 @@ useEffect(() => {
         <h2 className="text-4xl font-bold text-center mb-14">Tokenomics</h2>
 
         <div className="max-w-xl mx-auto space-y-6 text-lg">
-          <div className="bg-white/5 p-6 rounded-xl flex justify-between"><span>Total Supply</span><span className="font-semibold">100%</span></div>
-          <div className="bg-white/5 p-6 rounded-xl flex justify-between"><span>Locked (5 Years)</span><span className="font-semibold">50%</span></div>
-          <div className="bg-white/5 p-6 rounded-xl flex justify-between"><span>Liquidity + Ecosystem</span><span className="font-semibold">50%</span></div>
-          <div className="bg-white/5 p-6 rounded-xl flex justify-between"><span>Community + Rewards</span><span className="font-semibold">Airdrop</span></div>
+          <div className="bg-white/5 p-6 rounded-xl flex justify-between">
+            <span>Total Supply</span><span className="font-semibold">100%</span>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl flex justify-between">
+            <span>Locked (5 Years)</span><span className="font-semibold">50%</span>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl flex justify-between">
+            <span>Liquidity + Ecosystem</span><span className="font-semibold">50%</span>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl flex justify-between">
+            <span>Community + Rewards</span><span className="font-semibold">Airdrop</span>
+          </div>
         </div>
       </section>
 
@@ -175,31 +166,35 @@ useEffect(() => {
         <h2 className="text-4xl font-bold text-center mb-14">Roadmap</h2>
 
         <div className="max-w-2xl mx-auto space-y-10 text-lg">
-          <div className="bg-white/5 p-6 rounded-xl"><h3 className="font-semibold text-xl mb-2">Phase 1 — Birth of Reze-Chan</h3><p className="opacity-70">Launch on Base, deployments, DEX listing, initial community expansion.</p></div>
-          <div className="bg-white/5 p-6 rounded-xl"><h3 className="font-semibold text-xl mb-2">Phase 2 — x402 Integrations</h3><p className="opacity-70">Encrypted meme interactions, private swaps, zk-powered utilities.</p></div>
-          <div className="bg-white/5 p-6 rounded-xl"><h3 className="font-semibold text-xl mb-2">Phase 3 — Meme Privacy Ecosystem</h3><p className="opacity-70">Full privacy-native meme hub, creator tools, encrypted feed, and more.</p></div>
+          <div className="bg-white/5 p-6 rounded-xl">
+            <h3 className="font-semibold text-xl mb-2">Phase 1 — Birth</h3>
+            <p className="opacity-70">Launch + listing + community.</p>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl">
+            <h3 className="font-semibold text-xl mb-2">Phase 2 — Integration</h3>
+            <p className="opacity-70">Encrypted swaps + zk utilities.</p>
+          </div>
+
+          <div className="bg-white/5 p-6 rounded-xl">
+            <h3 className="font-semibold text-xl mb-2">Phase 3 — Ecosystem</h3>
+            <p className="opacity-70">Full privacy meme hub.</p>
+          </div>
         </div>
       </section>
 
       {/* LIVE MINT TRACKER */}
       <section className="px-6 py-24 border-t border-white/10 bg-black/40">
-        <h2 className="text-4xl font-bold text-center mb-10">
-          Live Mint Tracker
-        </h2>
+        <h2 className="text-4xl font-bold text-center mb-10">Live Mint Tracker</h2>
 
         {loading ? (
           <p className="text-center opacity-60 text-lg">Loading latest mints...</p>
         ) : mints.length === 0 ? (
-          <p className="text-center opacity-60 text-lg">
-            No mints yet — be the first!
-          </p>
+          <p className="text-center opacity-60 text-lg">No mints yet — be the first!</p>
         ) : (
           <div className="max-w-2xl mx-auto space-y-4">
             {mints.map((mint, i) => (
-              <div
-                key={i}
-                className="bg-white/5 p-4 rounded-xl flex justify-between items-center"
-              >
+              <div key={i} className="bg-white/5 p-4 rounded-xl flex justify-between items-center">
                 <div>
                   <p className="font-semibold">{mint?.owner || "Unknown"}</p>
                   <p className="opacity-60 text-sm">
@@ -213,45 +208,37 @@ useEffect(() => {
           </div>
         )}
       </section>
-     {/* NFT GALLERY */}
-<section className="px-6 py-24 bg-black/30 border-t border-white/10">
-  <h2 className="text-4xl font-bold text-center mb-14">NFT Gallery</h2>
 
-  {loadingNFTs ? (
-    <p className="text-center opacity-60 text-lg">Loading gallery...</p>
-  ) : nfts.length === 0 ? (
-    <p className="text-center opacity-60 text-lg">No NFTs found.</p>
-  ) : (
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-      {nfts.map((item, i) => (
-        <a
-          key={i}
-          href={`https://zora.co/collect/base:${0xa1dc9aaeb9a3e2202053099e55984054b6cb15d0}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white/5 rounded-xl overflow-hidden hover:bg-white/10 transition border border-white/10"
-        >
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-56 object-cover"
-          />
+      {/* NFT GALLERY */}
+      <section className="px-6 py-24 border-t border-white/10">
+        <h2 className="text-4xl font-bold text-center mb-10">NFT Gallery</h2>
 
-          <div className="p-4">
-            <p className="font-semibold">{item.name || "Untitled"}</p>
-            <p className="opacity-60 text-sm">Token #{item.tokenId}</p>
+        {loadingNfts ? (
+          <p className="text-center opacity-60 text-lg">Loading gallery...</p>
+        ) : nfts.length === 0 ? (
+          <p className="text-center opacity-60 text-lg">
+            No posts yet — upload your first mint on Zora!
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {nfts.map((item, i) => (
+              <div key={i} className="bg-white/5 p-4 rounded-xl">
+                <img
+                  src={item?.thumbnail || item?.image || "/placeholder.png"}
+                  className="w-full rounded-lg mb-4"
+                  alt="NFT"
+                />
+                <p className="font-semibold">{item?.title || "Untitled"}</p>
+              </div>
+            ))}
           </div>
-        </a>
-      ))}
-    </div>
-  )}
-</section>
+        )}
+      </section>
 
       {/* FOOTER */}
       <footer className="px-6 py-10 text-center opacity-60 text-sm">
         Reze-Chan © {new Date().getFullYear()} — Powered by x402 Protocol
       </footer>
-
     </main>
   );
 }
