@@ -226,7 +226,7 @@ useEffect(() => {
       {nfts.map((item, i) => (
         <a
           key={i}
-          href={`https://zora.co/collect/base:${item.tokenId}`}
+          href={`https://zora.co/collect/base:${0xa1dc9aaeb9a3e2202053099e55984054b6cb15d0}`}
           target="_blank"
           rel="noopener noreferrer"
           className="bg-white/5 rounded-xl overflow-hidden hover:bg-white/10 transition border border-white/10"
