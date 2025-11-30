@@ -27,6 +27,36 @@ export default function Home() {
     const interval = setInterval(fetchMints, 15000);
     return () => clearInterval(interval);
   }, []);
+// NFT GALLERY STATES
+const [nfts, setNfts] = useState([]);
+const [loadingNFTs, setLoadingNFTs] = useState(true);
+
+async function fetchNFTs() {
+  try {
+    const res = await fetch(
+      "https://api.zora.co/discovery/tokens?address=0xa1dc9aaeb9a3e2202053099e55984054b6cb15d0"
+    );
+
+    const data = await res.json();
+    const tokens = data?.tokens || [];
+
+    const parsed = tokens.map((t) => ({
+      name: t.token?.tokenName,
+      image: t.token?.image?.url || t.token?.content?.media?.uri,
+      tokenId: t.token?.tokenId,
+    }));
+
+    setNfts(parsed);
+  } catch (err) {
+    console.error("NFT Gallery Error:", err);
+  }
+
+  setLoadingNFTs(false);
+}
+
+useEffect(() => {
+  fetchNFTs();
+}, []);
 
   return (
     <main className="bg-black text-white min-h-screen">
@@ -183,6 +213,39 @@ export default function Home() {
           </div>
         )}
       </section>
+     {/* NFT GALLERY */}
+<section className="px-6 py-24 bg-black/30 border-t border-white/10">
+  <h2 className="text-4xl font-bold text-center mb-14">NFT Gallery</h2>
+
+  {loadingNFTs ? (
+    <p className="text-center opacity-60 text-lg">Loading gallery...</p>
+  ) : nfts.length === 0 ? (
+    <p className="text-center opacity-60 text-lg">No NFTs found.</p>
+  ) : (
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+      {nfts.map((item, i) => (
+        <a
+          key={i}
+          href={`https://zora.co/collect/base:${item.tokenId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-white/5 rounded-xl overflow-hidden hover:bg-white/10 transition border border-white/10"
+        >
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-56 object-cover"
+          />
+
+          <div className="p-4">
+            <p className="font-semibold">{item.name || "Untitled"}</p>
+            <p className="opacity-60 text-sm">Token #{item.tokenId}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  )}
+</section>
 
       {/* FOOTER */}
       <footer className="px-6 py-10 text-center opacity-60 text-sm">
