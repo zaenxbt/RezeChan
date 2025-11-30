@@ -9,42 +9,60 @@ export default function ZoraFeed() {
   useEffect(() => {
     async function fetchFeed() {
       try {
-        const res = await fetch(
-          `https://api.zora.co/discover/v1/user/${WALLET}/activity`
-        );
+        const query = `
+          query WalletActivity($address: String!) {
+            wallet(address: $address) {
+              activities(limit: 50) {
+                type
+                timestamp
+                permalink
+                title
+                description
+                imageURL
+                token {
+                  tokenId
+                  name
+                  description
+                  imageURL
+                  contract
+                }
+              }
+            }
+          }
+        `;
+
+        const res = await fetch("https://api.zora.co/graphql", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // **Wajib** karena Zora butuh header utk GraphQL modern API
+            "X-API-KEY": "zora-public", 
+          },
+          body: JSON.stringify({
+            query,
+            variables: { address: WALLET },
+          }),
+        });
+
         const json = await res.json();
+        const items = json?.data?.wallet?.activities || [];
 
-        const items = json?.activities || [];
-
-        const formatted = items.map((i) => ({
-          id: i?.id || crypto.randomUUID(),
-          type: i?.type || "activity",
+        const formatted = items.map((i, index) => ({
+          id: index,
+          type: i.type,
+          title: i.title || i?.token?.name || "Untitled",
+          description: i.description || i?.token?.description || null,
           image:
-            i?.image_url ||
-            i?.media?.[0]?.media_url ||
-            i?.token?.image_url ||
+            i.imageURL ||
+            i?.token?.imageURL ||
             null,
-          title:
-            i?.title ||
-            i?.token?.name ||
-            i?.metadata?.name ||
-            "Zora Activity",
-          description:
-            i?.description ||
-            i?.token?.description ||
-            i?.metadata?.description ||
-            null,
-          zoraUrl:
-            i?.permalink ||
-            (i?.token?.token_id
-              ? `https://zora.co/collect/${i.token.contract}/${i.token.token_id}`
-              : null),
-          timestamp: i?.timestamp,
+          permalink: i.permalink,
+          timestamp: i.timestamp,
         }));
 
         setPosts(formatted);
       } catch (e) {
-        console.error("Zora Activity Feed Error:", e);
+        console.error("GraphQL feed error:", e);
       }
       setLoading(false);
     }
@@ -68,26 +86,27 @@ export default function ZoraFeed() {
       ) : (
         <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {posts.map((post) => (
-            <div key={post.id} className="bg-white/5 p-5 rounded-xl">
+            <div
+              key={post.id}
+              className="bg-white/5 p-5 rounded-xl border border-white/10"
+            >
               {post.image && (
                 <img
                   src={post.image}
-                  alt="Zora Item"
+                  alt="Zora Activity"
                   className="rounded-lg mb-4 w-full object-cover"
                 />
               )}
 
-              <h3 className="font-semibold mb-1">{post.title}</h3>
+              <h3 className="font-semibold mb-2">{post.title}</h3>
 
               {post.description && (
-                <p className="opacity-70 text-sm mb-3">
-                  {post.description}
-                </p>
+                <p className="opacity-70 text-sm mb-4">{post.description}</p>
               )}
 
-              {post.zoraUrl && (
+              {post.permalink && (
                 <a
-                  href={post.zoraUrl}
+                  href={post.permalink}
                   target="_blank"
                   className="inline-block px-4 py-2 bg-blue-600 rounded-lg text-sm"
                 >
@@ -101,3 +120,4 @@ export default function ZoraFeed() {
     </section>
   );
 }
+
