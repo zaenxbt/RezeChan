@@ -9,26 +9,42 @@ export default function ZoraFeed() {
   useEffect(() => {
     async function fetchFeed() {
       try {
-        const res = await fetch(`https://api.zora.co/feed/${WALLET}`);
-        const data = await res.json();
+        const res = await fetch(
+          `https://api.zora.co/discover/v1/user/${WALLET}/activity`
+        );
+        const json = await res.json();
 
-        // Format
-        const formatted = data.feed.map((item) => ({
-          id: item.id,
-          type: item.type,
+        const items = json?.activities || [];
+
+        const formatted = items.map((i) => ({
+          id: i?.id || crypto.randomUUID(),
+          type: i?.type || "activity",
           image:
-            item?.image?.uri ||
-            item?.content?.media?.[0]?.uri ||
+            i?.image_url ||
+            i?.media?.[0]?.media_url ||
+            i?.token?.image_url ||
             null,
-          title: item?.title || "No Title",
-          description: item?.description || null,
-          zoraUrl: item?.permalink || null,
-          timestamp: item?.timestamp
+          title:
+            i?.title ||
+            i?.token?.name ||
+            i?.metadata?.name ||
+            "Zora Activity",
+          description:
+            i?.description ||
+            i?.token?.description ||
+            i?.metadata?.description ||
+            null,
+          zoraUrl:
+            i?.permalink ||
+            (i?.token?.token_id
+              ? `https://zora.co/collect/${i.token.contract}/${i.token.token_id}`
+              : null),
+          timestamp: i?.timestamp,
         }));
 
         setPosts(formatted);
       } catch (e) {
-        console.error("Zora feed error:", e);
+        console.error("Zora Activity Feed Error:", e);
       }
       setLoading(false);
     }
@@ -37,19 +53,22 @@ export default function ZoraFeed() {
   }, []);
 
   if (loading)
-    return <div className="text-center py-20 opacity-60">Loading Zora feed...</div>;
+    return (
+      <div className="text-center py-20 opacity-60">
+        Loading Zora feed...
+      </div>
+    );
 
   return (
     <section className="px-6 py-24">
       <h2 className="text-4xl font-bold text-center mb-14">Zora Feed</h2>
 
       {posts.length === 0 ? (
-        <p className="text-center opacity-60">No posts found...</p>
+        <p className="text-center opacity-60">No activity found...</p>
       ) : (
         <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {posts.map((post) => (
             <div key={post.id} className="bg-white/5 p-5 rounded-xl">
-              
               {post.image && (
                 <img
                   src={post.image}
@@ -61,7 +80,9 @@ export default function ZoraFeed() {
               <h3 className="font-semibold mb-1">{post.title}</h3>
 
               {post.description && (
-                <p className="opacity-70 text-sm mb-3">{post.description}</p>
+                <p className="opacity-70 text-sm mb-3">
+                  {post.description}
+                </p>
               )}
 
               {post.zoraUrl && (
