@@ -137,7 +137,7 @@ export default function Home() {
 
         <div className="flex justify-center">
           <img
-            src="/reze-hero.png"
+            src="/reze-chan v2.png"
             alt="Reze"
             className="w-[380px] md:w-[480px] opacity-90"
           />
@@ -236,9 +236,9 @@ export default function Home() {
     <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/10">
       <h3 className="text-2xl font-bold mb-2">Allocation</h3>
       <p className="opacity-80 leading-relaxed">
-        🔹 70% Community  
-        <br />🔹 20% Ecosystem / Listings  
-        <br />🔹 10% Development  
+        🔹 95% Community (Fair Launch on Zora)  
+        <br />🔹 3% Ecosystem / Listings  
+        <br />🔹 2% Development  
       </p>
     </div>
 
