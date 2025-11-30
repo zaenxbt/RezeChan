@@ -1,4 +1,4 @@
-export default function Home() {import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 
@@ -150,39 +150,39 @@ export default function Home() {
           <div className="bg-white/5 p-6 rounded-xl"><h3 className="font-semibold text-xl mb-2">Phase 3 — Meme Privacy Ecosystem</h3><p className="opacity-70">Full privacy-native meme hub, creator tools, encrypted feed, and more.</p></div>
         </div>
       </section>
-  
+
       {/* LIVE MINT TRACKER */}
-<section className="px-6 py-24 border-t border-white/10 bg-black/40">
-  <h2 className="text-4xl font-bold text-center mb-10">
-    Live Mint Tracker
-  </h2>
+      <section className="px-6 py-24 border-t border-white/10 bg-black/40">
+        <h2 className="text-4xl font-bold text-center mb-10">
+          Live Mint Tracker
+        </h2>
 
-  {loading ? (
-    <p className="text-center opacity-60 text-lg">Loading latest mints...</p>
-  ) : mints.length === 0 ? (
-    <p className="text-center opacity-60 text-lg">
-      No mints yet — be the first!
-    </p>
-  ) : (
-    <div className="max-w-2xl mx-auto space-y-4">
-      {mints.map((mint, i) => (
-        <div
-          key={i}
-          className="bg-white/5 p-4 rounded-xl flex justify-between items-center"
-        >
-          <div>
-            <p className="font-semibold">{mint?.owner || "Unknown"}</p>
-            <p className="opacity-60 text-sm">
-              {new Date(mint?.timestamp).toLocaleString()}
-            </p>
+        {loading ? (
+          <p className="text-center opacity-60 text-lg">Loading latest mints...</p>
+        ) : mints.length === 0 ? (
+          <p className="text-center opacity-60 text-lg">
+            No mints yet — be the first!
+          </p>
+        ) : (
+          <div className="max-w-2xl mx-auto space-y-4">
+            {mints.map((mint, i) => (
+              <div
+                key={i}
+                className="bg-white/5 p-4 rounded-xl flex justify-between items-center"
+              >
+                <div>
+                  <p className="font-semibold">{mint?.owner || "Unknown"}</p>
+                  <p className="opacity-60 text-sm">
+                    {new Date(mint?.timestamp).toLocaleString()}
+                  </p>
+                </div>
+
+                <span className="text-green-400 font-bold">Minted ✔</span>
+              </div>
+            ))}
           </div>
-
-          <span className="text-green-400 font-bold">Minted ✔</span>
-        </div>
-      ))}
-    </div>
-  )}
-</section>
+        )}
+      </section>
 
       {/* FOOTER */}
       <footer className="px-6 py-10 text-center opacity-60 text-sm">
