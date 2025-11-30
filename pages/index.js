@@ -236,7 +236,8 @@ export default function Home() {
           </div>
         )}
       </section>
-
+<ZoraFeed />
+          
       {/* FOOTER */}
       <footer className="px-6 py-10 text-center opacity-60 text-sm">
         Reze-Chan © {new Date().getFullYear()} — Powered by x402 Protocol
