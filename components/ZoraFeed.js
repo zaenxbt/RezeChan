@@ -4,32 +4,29 @@ export default function ZoraFeed() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // My Wallett
+  // Wallet Address
   const WALLET = "0x4d9b44633fe12a25dcfdbfe4558805ff89a4da0b";
 
   useEffect(() => {
     async function fetchFeed() {
       try {
         const res = await fetch(
-          `https://api.zora.co/discovery/feed?ownerAddresses=${0x4d9b44633fe12a25dcfdbfe4558805ff89a4da0b}`
+          `https://api.zora.co/discovery/feed?ownerAddresses=${WALLET}`
         );
         const data = await res.json();
 
-        // Normalize
-        const formatted = data?.feed?.map((item) => {
-          return {
-            id: item.id,
-            type: item.type,
-            title: item.title || "Untitled",
-            content: item.content?.text || null,
-            image:
-              item.content?.media?.[0]?.url ||
-              item.content?.images?.[0]?.url ||
-              null,
-            timestamp: item.timestamp,
-            zoraUrl: item.zoraUrl,
-          };
-        });
+        const formatted = data?.feed?.map((item) => ({
+          id: item.id,
+          type: item.type,
+          title: item.title || "Untitled",
+          content: item.content?.text || null,
+          image:
+            item.content?.media?.[0]?.url ||
+            item.content?.images?.[0]?.url ||
+            null,
+          timestamp: item.timestamp,
+          zoraUrl: item.zoraUrl,
+        }));
 
         setPosts(formatted || []);
       } catch (err) {
