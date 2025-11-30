@@ -1,3 +1,5 @@
+import ZoraFeed from "../components/ZoraFeed";
+
 import { useEffect, useState } from "react";
 
 export default function Home() {
