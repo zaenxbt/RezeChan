@@ -11,8 +11,8 @@ export default function ZoraFeed() {
     async function fetchFeed() {
       try {
         const res = await fetch(
-          `https://api.zora.co/discovery/feed?ownerAddresses=${WALLET}`
-        );
+         "https://api.zora.co/discovery/feed?ownerAddresses=0x4d9b44633fe12a25dcfdbfe4558805ff89a4da0b"
+);
         const data = await res.json();
 
         const formatted = data?.feed?.map((item) => ({
